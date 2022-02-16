@@ -1,0 +1,427 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {  
+      "hub1_location": {
+        "type": "string",
+        "metadata": {
+           "description":"Azure Region for the first Hub"
+        }
+      },
+      "hub2_location": {
+        "type": "string",
+        "metadata": { 
+          "description":"Azure Region for the second Hub"
+          }
+      }
+    },
+    "variables": {
+      "vnet1_cfg": {
+        "name": "VNET1",
+        "addressSpacePrefix": "10.1.0.0/24",
+        "subnetName": "subnet1",
+        "subnetPrefix": "10.1.0.0/24",
+        "subnet2Name": "subnet2",
+        "subnet2Prefix": "",
+        "subnet3Name": "subnet3",
+        "subnet3Prefix": ""
+      },
+      "vnet2_cfg": {
+        "name": "VNET2",
+        "addressSpacePrefix": "10.1.1.0/24",
+        "subnetName": "subnet1",
+        "subnetPrefix": "10.1.1.0/24",
+        "subnet2Name": "subnet2",
+        "subnet2Prefix": "",
+        "subnet3Name": "subnet3",
+        "subnet3Prefix": ""
+        
+      },
+      "vnet3_cfg": {
+        "name": "VNET3",
+        "addressSpacePrefix": "10.2.0.0/24",
+        "subnetName": "subnet1",
+        "subnetPrefix": "10.2.0.0/24",
+        "subnet2Name": "subnet2",
+        "subnet2Prefix": "",
+        "subnet3Name": "subnet3",
+        "subnet3Prefix": ""
+      },
+      "vnet4_cfg": {
+        "name": "VNET4",
+        "addressSpacePrefix": "10.2.1.0/24",
+        "subnetName": "subnet1",
+        "subnetPrefix": "10.2.1.0/24",
+        "subnet2Name": "subnet2",
+        "subnet2Prefix": "",
+        "subnet3Name": "subnet3",
+        "subnet3Prefix": ""
+      },
+        "vnet5_cfg": {
+        "name": "VNET5",
+        "addressSpacePrefix": "10.1.2.0/24",
+        "subnetName": "subnet1",
+        "subnetPrefix": "10.1.2.0/24",
+        "subnet2Name": "subnet2",
+        "subnet2Prefix": "",
+        "subnet3Name": "subnet3",
+        "subnet3Prefix": ""
+      },
+        "vnet6_cfg": {
+        "name": "VNET6",
+        "addressSpacePrefix": "10.2.2.0/24",
+        "subnetName": "subnet1",
+        "subnetPrefix": "10.2.2.0/24",
+        "subnet2Name": "subnet2",
+        "subnet2Prefix": "",
+        "subnet3Name": "subnet3",
+        "subnet3Prefix": ""
+      }
+    },
+    "resources": [
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-05-01",
+      "name": "[variables('vnet1_cfg').name]",
+      "location": "[parameters('hub1_location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet1_cfg').addressSpacePrefix]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet1_cfg').subnetName]",
+            "properties": {
+              "addressPrefix": "[variables('vnet1_cfg').subnetPrefix]"
+            }
+          },          
+          {
+             "name": "[variables('vnet1_cfg').subnet2Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet1_cfg').subnet2Prefix]"
+            }
+          },
+          {
+            "name": "[variables('vnet1_cfg').subnet3Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet1_cfg').subnet3Prefix]"
+            }
+          }
+
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-05-01",
+      "name": "[variables('vnet2_cfg').name]",
+      "location": "[parameters('hub1_location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet2_cfg').addressSpacePrefix]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet2_cfg').subnetName]",
+            "properties": {
+              "addressPrefix": "[variables('vnet2_cfg').subnetPrefix]"
+            }
+          },
+          {
+             "name": "[variables('vnet2_cfg').subnet2Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet2_cfg').subnet2Prefix]"
+            }
+          },
+          {
+            "name": "[variables('vnet2_cfg').subnet3Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet2_cfg').subnet3Prefix]"
+            }
+          }
+
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-05-01",
+      "name": "[variables('vnet3_cfg').name]",
+      "location": "[parameters('hub2_location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet3_cfg').addressSpacePrefix]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet3_cfg').subnetName]",
+            "properties": {
+              "addressPrefix": "[variables('vnet3_cfg').subnetPrefix]"
+            }
+          },
+          {
+             "name": "[variables('vnet3_cfg').subnet2Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet3_cfg').subnet2Prefix]"
+            }
+          },
+          {
+            "name": "[variables('vnet3_cfg').subnet3Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet3_cfg').subnet3Prefix]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-05-01",
+      "name": "[variables('vnet4_cfg').name]",
+      "location": "[parameters('hub2_location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet4_cfg').addressSpacePrefix]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet4_cfg').subnetName]",
+            "properties": {
+              "addressPrefix": "[variables('vnet4_cfg').subnetPrefix]"
+            }
+          },
+          {
+             "name": "[variables('vnet4_cfg').subnet2Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet4_cfg').subnet2Prefix]"
+            }
+          },
+          {
+            "name": "[variables('vnet4_cfg').subnet3Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet4_cfg').subnet3Prefix]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-05-01",
+      "name": "[variables('vnet5_cfg').name]",
+      "location": "[parameters('hub2_location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet5_cfg').addressSpacePrefix]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet5_cfg').subnetName]",
+            "properties": {
+              "addressPrefix": "[variables('vnet5_cfg').subnetPrefix]"
+            }
+          },
+          {
+             "name": "[variables('vnet5_cfg').subnet2Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet5_cfg').subnet2Prefix]"
+            }
+          },
+          {
+            "name": "[variables('vnet5_cfg').subnet3Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet5_cfg').subnet3Prefix]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-05-01",
+      "name": "[variables('vnet6_cfg').name]",
+      "location": "[parameters('hub2_location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet6_cfg').addressSpacePrefix]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet6_cfg').subnetName]",
+            "properties": {
+              "addressPrefix": "[variables('vnet6_cfg').subnetPrefix]"
+            }
+          },
+          {
+             "name": "[variables('vnet6_cfg').subnet2Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet6_cfg').subnet2Prefix]"
+            }
+          },
+          {
+            "name": "[variables('vnet6_cfg').subnet3Name]",
+            "properties": {
+              "addressPrefix": "[variables('vnet6_cfg').subnet3Prefix]"
+            }
+          }
+        ]
+      }
+    },
+        {
+      "apiVersion": "2020-05-01",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "nsg1",
+      "location": "[parameters('hub1_location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "first_rule",
+            "properties": {
+              "description": "This is the first rule",
+              "protocol": "Tcp",
+              "sourcePortRange": "23-45",
+              "destinationPortRange": "46-56",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 123,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2020-05-01",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "nsg2",
+      "location": "[parameters('hub1_location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "first_rule",
+            "properties": {
+              "description": "This is the first rule",
+              "protocol": "Tcp",
+              "sourcePortRange": "23-45",
+              "destinationPortRange": "46-56",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 123,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2020-05-01",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "nsg3",
+      "location": "[parameters('hub1_location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "first_rule",
+            "properties": {
+              "description": "This is the first rule",
+              "protocol": "Tcp",
+              "sourcePortRange": "23-45",
+              "destinationPortRange": "46-56",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 123,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2020-05-01",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "nsg4",
+      "location": "[parameters('hub2_location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "first_rule",
+            "properties": {
+              "description": "This is the first rule",
+              "protocol": "Tcp",
+              "sourcePortRange": "23-45",
+              "destinationPortRange": "46-56",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 123,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2020-05-01",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "nsg5",
+      "location": "[parameters('hub2_location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "first_rule",
+            "properties": {
+              "description": "This is the first rule",
+              "protocol": "Tcp",
+              "sourcePortRange": "23-45",
+              "destinationPortRange": "46-56",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 123,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2020-05-01",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "nsg6",
+      "location": "[parameters('hub2_location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "first_rule",
+            "properties": {
+              "description": "This is the first rule",
+              "protocol": "Tcp",
+              "sourcePortRange": "23-45",
+              "destinationPortRange": "46-56",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 123,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    }
+    ]
+}
